@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocal Helper</title>
+  </head>
+
+  <body>
+    <p>For more information on this approach, check out <a href="https://completevocal.institute/complete-vocal-technique/" target="_blank">Complete Vocal Institute</a>.</p>
+
+    <h2>
+      <form id="vocalForm">
+        First Select the <i><b>Style/Volume</b></i> <br />
+        <br />
+        <div>
+          <label>_____Regular or Belty?: </label>
+          <select id="vocalStyle" onchange="updateVolumeSelection()">
+            <option value="regular">Regular</option>
+            <option value="shouty">Belt!!</option>
+          </select>
+        </div>
+        <div id="volumeLevelDiv">
+          <label>_____Volume Level: </label>
+          <select id="volumeLevel">
+            <option value="mellow">Mellow</option>
+            <option value="mezzo" selected>Mezzo</option>
+          </select>
+        </div>
+        <br />
+        <button type="button" id="enterPhraseBtn">
+          and then , <i><b>CLICK HERE to Enter Word or Phrase</b></i>
+        </button></h2>
+      </form>
+
+      <h2>...</h2>
+      <p><h2>
+        <strong>Volume Recommendation:</strong>
+        <span id="recommendation"></span>
+      </p>
+      <p><strong>Modified Phrase:</strong> <span id="modifiedPhrase"></span></p>
+
+      <br />
+      feel free to alter the <i><b>Style/Volume</b></i> and <br />
+      <button type="button" id="resubmitBtn">RE-Submit</button>
+    </h2>
+    <script>
+      let currentPhrase = ""; // Store the entered phrase here
+
+      function updateVolumeSelection() {
+        const vocalStyle = document.getElementById("vocalStyle").value;
+        const volumeDiv = document.getElementById("volumeLevelDiv");
+
+        if (vocalStyle === "shouty") {
+          volumeDiv.style.display = "none";
+        } else {
+          volumeDiv.style.display = "block";
+        }
+      }
+
+      document
+        .getElementById("enterPhraseBtn")
+        .addEventListener("click", function () {
+          const phrase = prompt("Enter a vocal phrase:");
+          if (phrase) {
+            // Only update the currentPhrase if something was entered
+            currentPhrase = phrase;
+          }
+          processPhrase();
+        });
+
+      document
+        .getElementById("resubmitBtn")
+        .addEventListener("click", function () {
+          processPhrase();
+        });
+
+      function processPhrase() {
+        if (!currentPhrase) return; // Exit if no phrase has been entered yet.
+
+        const vocalStyle = document.getElementById("vocalStyle").value;
+        const volumeLevel =
+          vocalStyle === "shouty"
+            ? "loud"
+            : document.getElementById("volumeLevel").value;
+
+        let recommendation;
+        let modified = currentPhrase;
+
+        const rulesList = {
+  loud: [
+  ["(gl|sh)?ove", "$1OH!v"],  // This covers "love", "glove", and "shove"
+    
+    ["oo", "OH!"],
+    ["i(?!['’deght])", "OH!"], 
+    ["ou", "OH!"], 
+    ["ea", "AY!"], 
+    ["i(de|te|gh)", "OH!"], 
+    ["want", "WOH!nt"],
+    ["(?<![AY!])a(?!Y!)", "AY!"], 
+    ["(?<![AY!])ay(?!Y!)", "AY!"], 
+    ["(?<![AY!])e(?!Y!)", "AY!"], 
+    ["(?<![OH!])i(?!H!)", "OH!"], 
+    ["(?<![OH!])o(?!H!)", "OH!"], 
+    ["(?<![OH!])u(?!H!)", "OH!"],
+  ],
+  mezzo: [
+  ["(gl|sh)?ove", "$1ewv"],  // This covers "love", "glove", and "shove"
+    ["oo", "ew"], 
+    ["i(?!['’deghts])", "iH"], 
+    ["ou", "ew"], 
+    ["ea", "iH"], 
+    ["i(?=[ndgt](?!e)|s(?!e))", "iH"], 
+    ["want", "wewnt"],
+    ["a", "iH"], 
+    ["ay", "iH"], 
+    ["e", "iH"], 
+    ["(?<![ea])o", "ew"], 
+    ["u", "ew"], 
+    ["y(?![aeiou])", "iH"], 
+    ["y(?=[aeiou])", "ew"], 
+    ["i(?=['’])", "ew"],
+  ],
+  mellow: [
+  ["(gl|sh)?ove", "$1OOv"],  // This covers "love", "glove", and "shove"
+   ["oo", "OO"], 
+    ["i(?!['’deght])", "OO"], 
+    ["ou", "OO"], 
+    ["ea", "UH"], 
+    ["i(te|gh)", "OO"], 
+    ["want", "wOOnt"],
+    ["(?<![UH])a(?!H)", "UH"], 
+    ["(?<![UH])ay(?!H)", "UH"], 
+    ["(?<![UH])e(?!H)", "UH"], 
+    ["(?<![OO])i(?!O)", "OO"], 
+    ["(?<![OO])o(?!O)", "OO"], 
+    ["(?<![OO])u(?!O)", "OO"],
+  ],
+};
+
+
+
+        for (const [pattern, replacement] of rulesList[volumeLevel]) {
+          const regex = new RegExp(pattern, "g");
+          modified = modified.replace(regex, replacement);
+        }
+
+        if (volumeLevel === "loud") {
+          recommendation = "LOUD!";
+        } else if (volumeLevel === "mezzo") {
+          recommendation = "Medium volume";
+        } else {
+          recommendation = "Soft volume";
+        }
+
+        document.getElementById("recommendation").innerText = recommendation;
+        document.getElementById("modifiedPhrase").innerText = modified;
+      }
+    </script>
+  </body>
+</html>

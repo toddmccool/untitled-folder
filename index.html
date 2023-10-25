@@ -115,68 +115,71 @@
             ? "loud"
             : document.getElementById("volumeLevel").value;
 
-            const rulesList = {
-    loud: [
-        ["\\bto\\b", "tOH!"],
-        ["\\bi\\b", "OH!"],  // Word "i" becomes "OH!"
-        ["i(?![aeiou])\\b", "iH"], 
-        ["you", "yOH!"],
-        ["(gl|sh)?ove", "$1OH!v"],
-        ["want", "wOH!nt"],
-        ["oo", "OH!"],
-        ["ou", "OH!"],
-        ["ea", "AY!"],
-        ["i(?!['’deght])", "OH!"],
-        ["a", "AY!"],
-        ["ay", "AY!"],
-        ["e", "AY!"],
-        ["(?<![ea])o", "OH!"],
-        ["u", "OH!"],
-        ["y(?![aeiou])", "OH!"],
-        ["y(?=[aeiou])", "OH!"],
-        ["me", "mAY!"]
-    ],
-    mezzo: [
+    const rulesList = {
+  loud: [
+    ["\\bto\\b", "tOH!"],
+    ["\\bi\\b", "OH!"],  // Word "i" becomes "OH!"
+    ["i(?![aeiou])\\b", "iH"], 
+    ["you", "yOH!"],
+    ["(gl|sh)?ove", "$1OH!v"],
+    ["want", "wOH!nt"],
+    ["oo", "OH!"],
+    ["ou", "OH!"],
+    ["ea", "AY!"],
+    ["i(?!['’deght])", "OH!"],
+    ["a", "AY!"],
+    ["ay", "AY!"],
+    ["e", "AY!"],
+    ["\\bo", "OH!"],     // The new rule
+    ["(?<![ea])o", "OH!"],
+    ["u", "OH!"],
+    ["y(?![aeiou])", "OH!"],
+    ["y(?=[aeiou])", "OH!"],
+    ["me", "mAY!"]
+  ],
+  mezzo: [
     ["\\bto\\b", "tew"],
-        ["\\bi\\b", "yă"],  // Word "i" becomes "ew"
-        ["i(?![aeiou])\\b", "iH"], 
-        ["you", "yew"],
-        ["(gl|sh)?ove", "$1ewv"],
-        ["want", "wewnt"],
-        ["oo", "ew"],
-        ["ou", "ew"],
-        ["ea", "iH"],
-        ["i(?!['’deghts])", "yă"],
-        ["i(?=[ndgt](?!e)|s(?!e))", "iH"],
-        ["a", "iH"],
-        ["ay", "ay"],
-        ["e", "iH"],
-        ["(?<![ea])o", "ew"],
-        ["u", "ew"],
-        ["y(?![aeiou])", "iH"],
-        ["y(?=[aeiou])", "ew"],
-        ["me", "miH"]
-    ],
-    mellow: [
-        ["\\bto\\b", "tOO"],
-        ["\\bi\\b", "OO"],  // Word "i" becomes "OO"
-        ["i(?![aeiou])\\b", "iH"], 
-        ["you", "yOO"],
-        ["(gl|sh)?ove", "$1OOv"],
-        ["want", "wOOnt"],
-        ["oo", "OO"],
-        ["ou", "OO"],
-        ["ea", "UH"],
-        ["i(?!['’deght])", "OO"],
-        ["a", "UH"],
-        ["ay", "UH"],
-        ["e", "UH"],
-        ["(?<![ea])o", "OO"],
-        ["u", "OO"],
-        ["y(?![aeiou])", "OO"],
-        ["y(?=[aeiou])", "OO"],
-        ["me", "mUH"]
-    ]
+    ["\\bi\\b", "yă"],  // Word "i" becomes "yă"
+    ["i(?![aeiou])\\b", "iH"], 
+    ["you", "yew"],
+    ["(gl|sh)?ove", "$1ewv"],
+    ["want", "wewnt"],
+    ["oo", "ew"],
+    ["ou", "ew"],
+    ["ea", "iH"],
+    ["i(?!['’deghts])", "yă"],
+    ["i(?=[ndgt](?!e)|s(?!e))", "iH"],
+    ["a", "iH"],
+    ["ay", "ay"],
+    ["e", "iH"],
+    ["\\bo", "hyew"],   // The new rule
+    ["(?<![ea])o", "ew"],
+    ["u", "ew"],
+    ["y(?![aeiou])", "iH"],
+    ["y(?=[aeiou])", "ew"],
+    ["me", "miH"]
+  ],
+  mellow: [
+    ["\\bto\\b", "tOO"],
+    ["\\bi\\b", "OO"],  // Word "i" becomes "OO"
+    ["i(?![aeiou])\\b", "iH"], 
+    ["you", "yOO"],
+    ["(gl|sh)?ove", "$1OOv"],
+    ["want", "wOOnt"],
+    ["oo", "OO"],
+    ["ou", "OO"],
+    ["ea", "UH"],
+    ["i(?!['’deght])", "OO"],
+    ["a", "UH"],
+    ["ay", "UH"],
+    ["e", "UH"],
+    ["\\bo", "uh"],     // The new rule
+    ["(?<![ea])o", "OO"],
+    ["u", "OO"],
+    ["y(?![aeiou])", "OO"],
+    ["y(?=[aeiou])", "OO"],
+    ["me", "mUH"]
+  ]
 };
 
 
